@@ -192,9 +192,9 @@
     window.sortDesc = true;
     window.adminSelSub = "";
 
-    db.ref(PATH).on('value', snap => {
-        const v = snap.val() || {};
-        window.APP = {
+    db.ref(PATH).once('value').then(snap => {
+    const v = snap.val() || {};
+    window.APP = {
             subs: v.subjects || ["الإنجليزي"],
             units: v.units || {"الإنجليزي":["عام"]},
             content: Array.isArray(v.content) ? v.content : Object.values(v.content || {}),
